@@ -9,25 +9,23 @@
   <style> body { margin: 0; } </style>
 </head>
 <body>
-  <!-- Thêm thuộc tính renderer để tối ưu tính toán chiều sâu (depth) -->
   <a-scene
     mindar-image="imageTargetSrc: ./targets.mind;"
+    color-space="sRGB"
+    renderer="logarithmicDepthBuffer: true; colorManagement: true;"
     vr-mode-ui="enabled: false"
-    renderer="logarithmicDepthBuffer: true;">
-    <a-assets>
+    device-orientation-permission-ui="enabled: false">
+    <a-assets timeout="10000">
       <a-asset-item id="model" src="./model6.glb"></a-asset-item>
     </a-assets>
-    
-    <!-- Thêm near="0.001" vào camera để cho phép hiển thị các vật thể ở cực gần -->
-    <a-camera position="0 0 0" look-controls="enabled: false" near="0.001"></a-camera>
-    
+    <a-camera position="0 0 0" look-controls="enabled: false" far="10000"></a-camera>
     <a-entity mindar-image-target="targetIndex: 0">
       <a-gltf-model
         src="#model"
         position="0 -0.3 0"
         scale="0.5 0.5 0.5"
         rotation="0 0 0"
-        animation-mixer="clip: mixamo.com.003 Retarget.001; loop: repeat">
+        animation-mixer="clip: *; loop: repeat">
       </a-gltf-model>
     </a-entity>
   </a-scene>
